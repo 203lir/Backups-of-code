@@ -52,6 +52,6 @@ for d in range(1, 1001):
 end = time.time()
 
 tottime = end - start
-avtime = tottime/1000
+avtime = tottime
 
 print(avtime)
