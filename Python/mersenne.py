@@ -14,7 +14,7 @@ start = time.time()
 
 ifh = 0
 
-for d in range(1, 1001):
+for d in range(1, 10000):
 
     def is_prime(n):
         if n == 2 or n == 3:

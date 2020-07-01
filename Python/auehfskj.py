@@ -16,9 +16,8 @@ class ball:
     location = [400, 300]
     bounced = False
 
-    def __init__(self, direction):
-        self.direction = direction
-        print(self.direction)
+    def __init__(self):
+        self.direction = [random.randint(-1, 10), random.randint(-10, 10)]
 
     def bounce(self):
         if self.bounced == False:
@@ -38,10 +37,8 @@ class ball:
         self.location[0] += self.direction[0]*time*25
         self.location[1] += self.direction[1]*time*25
 
-    def draw(self):
-        drawposition = [int(self.location[0]), 600-int(self.location[1])]
-        pygame.draw.circle(gamedisplay, (0, 0, 0), drawposition, 5)
-
+    def returninfo(self):
+        return self.location
 
 pygame.init()
 gamedisplay = pygame.display.set_mode((800, 600))
@@ -50,8 +47,8 @@ clock = pygame.time.Clock()
 running = True
 lastframetime = time.time()
 
-ball1 = ball([random.randint(-10, 10), random.randint(-10, 10)])
-ball2 = ball([random.randint(-10, 10), random.randint(-10, 10)])
+ball1 = ball()
+ball2 = ball()
 #ball3 = ball([random.randint(-10, 10), random.randint(-10, 10)])
 #ball4 = ball([random.randint(-10, 10), random.randint(-10, 10)])
 #ball5 = ball([random.randint(-10, 10), random.randint(-10, 10)])
@@ -63,11 +60,11 @@ while running:
 
     gamedisplay.fill((255, 255, 255))
 
-    ball1.draw()
-    ball2.draw()
-    #ball3.draw()
-    #ball4.draw()
-    #ball5.draw()
+    locations = [ball1.returninfo(), ball2.returninfo()]
+
+    for a in locations:
+        drawposition = [int(a[0]), 600-int(a[1])]
+        pygame.draw.circle(gamedisplay, (0, 0, 0), drawposition, 5)
 
     pygame.display.update()
 
